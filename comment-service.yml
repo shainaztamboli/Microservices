@@ -33,3 +33,11 @@ eureka:
 # since each docker container has it's own IP
 server:
   port: 8080
+spring:
+  h2:
+    console:
+      enabled: true
+  jpa:
+    hibernate:
+        ddl-auto: none
+    show-sql: true
