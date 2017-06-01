@@ -39,3 +39,14 @@ zuul:
 spring:
   aop:
     proxy-target-class: true
+# Since our gateway is using Eureka (@EnableEurekaClient), the Gateway using Netfix Ribbon to make
+# the actual call. The ribbon call is wrapped within Hystrix so that we can handle any errors.
+# Hystrix has low delay tolerance threshold and hence we bump it to 5 seconds.
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          strategy: SEMAPHORE
+          semaphore:
+            timeoutInMilliseconds: 5000
